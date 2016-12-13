@@ -1,0 +1,35 @@
+lua-getopt
+==========
+
+Command-line argument parser for Lua 5.3.
+
+
+Features
+--------
+
+ - GNU-style flag handling (`-rcsuv` == `-r -c -s -u -v`) (only for booleans)
+ - link:[D-style] option definitions (more or less)
+
+
+Usage
+-----
+
+It's just one function:
+
+[source,lua]
+----
+local getopt = require('getopt')
+
+getopt(arg, ...)
+----
+
+
+Documentation
+-------------
+
+Documentation for the `getopt` function is available
+<<lua-getopt.html#,here>>.
+
+The documentation is shoddy, and could stand to be improved.
+I highly recommend reading the test/example script instead:
+link:test.lua[test.lua]

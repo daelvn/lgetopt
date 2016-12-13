@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>lua-getopt Documentation</title>
+
+  <!--
+   Might as well make it easy on the eyes.
+   (The page still works without the stylesheet.)
+  -->
+  <link rel="stylesheet" href="http://0xc9.net/css/main.css"/>
+  <link rel="stylesheet" href="http://0xc9.net/css/hljs.css"/>
+  <script src="http://0xc9.net/assets/highlight.js"></script>
+ </head>
+ <body>
+  <main>
+  <h1>lua-getopt Documentation</h1>
+
+  <section id="getopt">
+   <h2>The <code>getopt</code> Function</h2>
+
+   <p class="function_signature"><code class="language-lua">
+    function getopt(<var>arguments</var>, <var>options</var>)
+   </code></p>
+
+   <dl>
+    <dt>Parameters</dt>
+    <dd><dl>
+     <dt><var>arguments</var></dt>
+     <dd>
+     A list of arguments.
+     (The <var>arg</var> variable, for example.)
+     </dd>
+
+     <dt><var>options</var></dt>
+     <dd>
+     <a href="#options">The option definitions.</a>
+     </dd>
+    </dl></dd>
+
+    <dt>Returns</dt>
+    <dd>A table of options. (<a href="#result">described here</a>)</dd>
+    <dd><samp>nil, <var>msg</var>, <var>index</var></samp> on error</dd>
+   </dl>
+  </section>
+
+  <section id="options">
+   <h2>The <var>options</var> Parameter</h2>
+
+   <p>
+   The <var>options</var> parameter is a table with the following structure:
+   </p>
+
+<pre><code class="language-lua">{
+    help_text = <a href="#o_help_text"><var>text</var></a>, -- optional
+    <a href="#o_options">options</a> = { -- optional
+        <a href="#o_o_option"><var>option</var></a>,
+        <a href="#o_o_option"><var>option</var></a>,
+        ...
+    },
+    <a href="#o_flags">flags</a> = { -- optional
+        <a href="#o_f_flag"><var>flag</var></a>,
+        <a href="#o_f_flag"><var>flag</var></a>,
+        ...
+    },
+}</code></pre>
+
+   <p>
+   While everything is optional, calling <code>getopt</code> with no
+   options is kind of pointless.
+   </p>
+
+   <section id="o_help_text">
+    <h3><code class="language-lua">options.<var>help_text</var></code></h3>
+
+    <p>
+    A string containing the name of the program and a description of it's
+    (intended) function.
+    </p>
+
+    <p>
+    For example, the help text for "rm" might be:
+    <code>"rm -- remove files or directories"</code>
+    </p>
+   </section>
+
+   <section id="o_options">
+    <h3><code class="language-lua">options.<var>options</var></code></h3>
+
+    <p>
+    A list of valid options with the form:
+    </p>
+
+<pre id="o_o_option"><code class="language-lua"><var>option</var> = {
+    help_text = <a href="#o_o_help_text"><var>text</var></a>, -- optional
+    type = <a href="#o_o_type"><var>type</var></a>, -- REQUIRED
+    callback = <a href="#o_o_callback"><var>callback</var></a>, -- optional
+}</code></pre>
+
+    <p>
+    The options are indexed by their names, such as "--verbose", or "-bsize".
+    </p>
+
+    <p>
+    The option name doesn't have to start with two dashes.
+    It can be anything.
+    </p>
+
+    <section id="o_o_help_text">
+     <h4>Option Help Text</h4>
+
+     <p>
+     A string describing the option.
+     </p>
+    </section>
+
+    <section id="o_o_type">
+     <h4>Option Types</h4>
+
+     <dl>
+      <dt><code>"boolean"</code></dt>
+      <dd><kbd><b>--plain</b></kbd></dd>
+      <dd>
+      A simple boolean value.
+      <code>true</code> if the option is specified, <code>nil</code>
+      otherwise.
+      </dd>
+
+      <dt><code>"counter"</code></dt>
+      <dd><kbd><b>-v -v</b></kbd></dd>
+      <dd>
+      Keep track of the number of times an option appears.
+      Mostly used for "verbose" options.
+      </dd>
+
+      <dt><code>"number"</code></dt>
+      <dd><kbd>--block-size <b>512</b></kbd></dd>
+      <dd>
+      A number.
+      </dd>
+
+      <dt><code>"string"</code></dt>
+      <dd><kbd>-o <b>../main.o</b></kbd></dd>
+      <dd>
+      A string value, such as a filename.
+      </dd>
+     </dl>
+    </section>
+
+    <section id="o_o_callback">
+     <h4>Option Callbacks</h4>
+
+     <p>
+     Instead of returning the option value directly, a callback can
+     be registered.
+     The callback is a function that is given the option value as an
+     argument.
+     The return value of the callback is set as the value of the option.
+     </p>
+    </section>
+
+    <p>Example:</p>
+
+<pre><code class="language-lua">options = {
+  ['--verbose'] = {
+    help_text = "Show all the important stuff.",
+    type = "boolean",
+  },
+  ['--foo'] = {
+    help_text = "Path to foo.",
+    type = "string",
+  },
+  ['mode'] = {
+    help_text = "How to handle foo.",
+    type = "string",
+    callback = function(mode)
+      if (mode == 'discombobulate') then
+        return 1
+      elseif (mode == 'sautee') then
+        return 2
+      else
+        error('Invalid mode: '..mode)
+      end
+    end,
+  },
+},</code></pre>
+   </section>
+
+   <section id="o_flags">
+    <h3><code class="language-lua">options.<var>flags</var></code></h3>
+
+    <p>
+    Flags are special options that are only one character long.
+    They can only be of type "boolean" or "counter".
+    If the type is not specified, it defaults to "boolean".
+    </p>
+
+    <p>
+    Flags can be combined.
+    For example, <code>-rcsuv</code> is the same as
+    <code>-r -c -s -u -v</code>.
+    </p>
+
+    <section id="o_f_flag">
+     <h4><code class="language-lua">options.flags[<var>flag</var>]</code></h4>
+
+     <p>
+     <code class="language-lua">options.flags</code> is a list with the
+     same structure as
+     <a href="#o_options"
+     ><code class="language-lua">options.options</code></a>.
+     </p>
+
+     <p>
+     An example:
+     </p>
+
+<pre><code class="language-lua">flags = {
+  ['a'] = {help_text = "The -a flag."},
+  ['b'] = {help_text = "The -b flag."},
+  ['c'] = {help_text = "The -c flag."},
+},</code></pre>
+    </section>
+   </section>
+  </section>
+
+  <section id="result">
+   <h2>Result Structure</h2>
+
+<pre><code class="language-lua">{
+    opt = { -- always present
+        [some_option_name] = value_of_some_option,
+        [another_option_name] = value_of_another_option,
+        ...
+    },
+    unhandled = { -- set to `nil` if empty
+        first_unrecognized_option,
+        second_unrecognized_option,
+        ...
+    },
+}</code></pre>
+
+   <p>
+   For example, the value of the string option <code>--output-file</code>
+   is stored as: <code>result.opt["--output-file"]</code>.
+   (<var>result</var> is the return value of the <code>getopt</code>
+   function.)
+   </p>
+  </section>
+  </main>
+ </body>
+</html>
