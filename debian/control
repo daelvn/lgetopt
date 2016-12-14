@@ -1,0 +1,14 @@
+Source: lua-getopt
+Section: interpreters
+Priority: optional
+Maintainer: Christopher Clements <bcnjr5@gmail.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: http://0xc9.net/projects/lua-getopt
+Vcs-Git: git://github.com/bcnjr5/lua-getopt.git
+Vcs-Browser: https://github.com/bcnjr5/lua-getopt
+
+Package: lua5.3-getopt
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: getopt module for Lua 5.3
