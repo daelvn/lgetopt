@@ -66,7 +66,7 @@ return function(arg, opts)
         goto continue
       end
 
-      if (arg[i]:sub(1,1) == '-') then
+      if (arg[i]:sub(1,1) == '-') or (arg[i]:sub(1,1) == '@') then
         if (#arg[i] > 1) and (arg[i]:sub(2,2) == '-') then
           -- only reached if "--help" is not defined
           if (arg[i] == '--help') then -- default "--help" {{{
