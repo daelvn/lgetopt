@@ -3,7 +3,7 @@
 
 assert(arg ~= nil, 'Lua interpreter does not support command-line arguments')
 
-local getopt = require('getopt')
+local getopt = require('lgetopt')
 local write = require('io').write
 
 local opts
