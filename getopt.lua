@@ -3,7 +3,7 @@
 -- On error, returns (nil, message, index).
 -- If the default "--help" handler is run, returns 'help'.
 
-return function(arg, opts)
+return function (arg, opts)
   local skip_opts = false
 
   local result = {
@@ -30,21 +30,21 @@ return function(arg, opts)
         do
           local value
 
-          if (o.type == 'string') then
+          if o.type == 'string' then
             i = i + 1
             if (i > #arg) then
               error('Option "'..name..'" requires a string', 2)
             end
             value = arg[i]
-          elseif (o.type == 'number') then
+          elseif o.type == 'number' then
             i = i + 1
             if (i > #arg) then
               error('Option "'..name..'" requires a number', 2)
             end
             value = tonumber(arg[i])
-          elseif (o.type == 'boolean') then
+          elseif o.type == 'boolean' then
             value = true
-          elseif (o.type == 'counter') then
+          elseif o.type == 'counter' then
             if not (counter_cache[name]) then
               counter_cache[name] = 1
               value = 1
@@ -56,10 +56,10 @@ return function(arg, opts)
             error('Invalid option type: '..tostring(o.type), 2)
           end
 
-          if (o.callback) then
-            result.opt[name] = o.callback(value)
+          if o.call then
+            result.opt [name] = o.call (value)
           else
-            result.opt[name] = value
+            result.opt [name] = value
           end
         end
 
@@ -73,9 +73,9 @@ return function(arg, opts)
             local format = require('string').format
             local output = opts.help_output or require('io').write
 
-            if (opts.help_text) then
-              output(opts.help_text)
-              output("\n")
+            if opts.help then
+              output (opts.help)
+              output ("\n")
             end
 
             output("OPTIONS:\n")

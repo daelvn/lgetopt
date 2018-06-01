@@ -6,8 +6,7 @@ assert(arg ~= nil, 'Lua interpreter does not support command-line arguments')
 local getopt = require('getopt')
 local write = require('io').write
 
-local opts = {}
-
+local opts
 do -- process arguments
   local args = getopt(arg, {
     help_text = 'test.lua -- getopt test script',

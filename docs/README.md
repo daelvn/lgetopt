@@ -1,0 +1,22 @@
+# lgetopt
+lgetopt is a fork of [bcnjr5/lua-getopt](https://github.com/bcnjr5/lua-getopt) with slight changes to the code. It's a command-line argument parser for Lua 5.3.
+
+## Features
+- GNU-style flag handling (-rsv -> -r -s -v), but only for flags that don't accept values
+- D-style option definitions (more or less)
+
+## Usage
+You can require the module which will return a function. The function takes the first argument as the list of arguments and the second as the option definitions.
+```lua
+local getopt = require "getopt"
+getopt (arg, {})
+```
+
+## Documentation
+You can find the documentation for the function [here](lgetopt.md)
+
+## License
+As the original code was unlicensed, I don't really see a reason to license it, since most of the changes are minimal.
+
+[lgetopt](http://me.daelvn.ga/lgetopt) is a command-line argument parser for Lua 5.3
+Made by [bcnjr5](https://github.com/bcnjr5)
