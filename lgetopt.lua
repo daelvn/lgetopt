@@ -116,7 +116,7 @@ return function (arg, opts)
             if (opts.options) then
               for k,v in pairs (opts.options) do
                 local e = { 
-                  desc = v.help_text or '(no help text)',
+                  desc = v.help or '?',
                 }
 
                 if (v.type == 'string') then
