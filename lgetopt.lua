@@ -97,7 +97,7 @@ return function (arg, opts)
             if (opts.flags) then
               for k,v in pairs(opts.flags) do
                 o[#o + 1] =  {
-                  name = k:len == 1 and '  -'..k or '  --'..k,
+                  name = k:len () == 1 and '  -'..k or '  --'..k,
                   desc = v.help or '?',
                 }
 
