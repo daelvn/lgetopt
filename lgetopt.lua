@@ -11,6 +11,7 @@ return function (arg, opts)
   }
 
   local counter_cache = {}
+  local table_cache   = {}
 
   local i = 0 -- start at 0 since loop increments first
 
@@ -52,6 +53,15 @@ return function (arg, opts)
               counter_cache[name] = counter_cache[name] + 1
               value = counter_cache[name]
             end
+          elseif o.type == 'table' then
+            i = i + 1
+            if not (table_cache[name]) then
+              table_cache[name] = {arg[i]}
+              value             = table_cache[name]
+            else
+              table.insert (table_cache[name], arg[i])
+              value = table_cache[name]
+            end
           else
             error('Invalid option type: '..tostring(o.type), 2)
           end
@@ -75,7 +85,7 @@ return function (arg, opts)
 
             if opts.help then
               output (opts.help)
-              output ("\n")
+              output ("\n" )
             end
 
             output("OPTIONS:\n")
@@ -85,8 +95,8 @@ return function (arg, opts)
 
             if (opts.flags) then
               for k,v in pairs(opts.flags) do
-                o[#o + 1] = {
-                  name = '  -'..k,
+                o[#o + 1] =  {
+                  name = '  - '..k,
                   desc = v.help_text or '(no help text)',
                 }
 
@@ -101,8 +111,8 @@ return function (arg, opts)
             end
 
             if (opts.options) then
-              for k,v in pairs(opts.options) do
-                local e = {
+              for k,v in pairs (opts.options) do
+                local e = { 
                   desc = v.help_text or '(no help text)',
                 }
 
@@ -113,6 +123,8 @@ return function (arg, opts)
                 elseif (v.type == 'boolean') then
                   e.name = '  '..k
                 elseif (v.type == 'counter') then
+                  e.name = '  '..k..' ...'
+                elseif (v.type == 'table') then
                   e.name = '  '..k..' ...'
                 else
                   error('Invalid option type: '..tostring(o.type), 2)
@@ -142,10 +154,10 @@ return function (arg, opts)
               end
               output(opt.desc)
               output("\n")
-              o[k] = nil
+              o[k] = nil 
             end
 
-            return 'help'
+            return 'help' 
           end -- }}}
         elseif (opts.flags) then
           local s = arg[i]:sub(2)
@@ -165,7 +177,7 @@ return function (arg, opts)
               end
             else
               return nil, 'invalid flag: '..f, i
-            end
+            end 
           end
           goto continue
         end

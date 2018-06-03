@@ -15,6 +15,30 @@ getopt (arg, {})
 ## Documentation
 You can find the documentation for the function [here](lgetopt.md)
 
+## Changelog
+### 3 Jun 2018
+Added the `table` type to options! Now you can collect a list of arguments like this:
+```lua
+local getopt = require "lgetopt"
+local opts   = {
+  options = {
+    ["+i"] = {
+      help = "Collect inputs",
+      type = "table"
+    }
+  }
+}
+
+local argl = getopt (arg, opts)
+for k,v in pairs (argl.opt["+i"]) do print (k,v) end
+```
+Then call this script like `lua example.lua +i file1 +i file2 +i file3` to get this result:
+```
+1    file1
+2    file2
+3    file3
+```
+
 ## License
 As the original code was unlicensed, I don't really see a reason to license it, since most of the changes are minimal.
 

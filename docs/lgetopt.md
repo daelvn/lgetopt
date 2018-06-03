@@ -52,6 +52,9 @@ Only accepts a number as the value.
 - `string`  
 Accepts a string as the value.  
 `-o ../main.o`
+- `table`
+Collects arguments in a table.
+`-i file1 -i file2 -i file3`
 ### Option callback
 `.call` will be called if found with the value of the flag, and sets it to what the function returns.
 ### `options.flags`

@@ -1,9 +1,9 @@
 package = "lgetopt"
-version = "1.1-2"
+version = "1.2-1"
 
 source = {
   url = "git://github.com/daelvn/lgetopt",
-  tag = "v1.1.2"
+  tag = "v1.2"
 }
 
 description = {
