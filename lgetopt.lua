@@ -84,7 +84,7 @@ return function (arg, opts)
             local output = opts.help_output or require('io').write
 
             if opts.help then
-              output (opts.name .. " " .. opts.version)
+              output (opts.name or "" .. " " .. opts.version or "")
               output (opts.help)
               output ("\n" )
             end
