@@ -63,7 +63,7 @@ return function (arg, opts)
               value = table_cache[name]
             end
           else
-            error('Invalid option type: '..tostring(o.type), 2)
+            error('Invalid option type '..tostring(o.type)..' for option '..tostring(name), 2)
           end
 
           if o.call then
@@ -127,7 +127,7 @@ return function (arg, opts)
                 elseif (v.type == 'table') then
                   e.name = '  '..k..' ...'
                 else
-                  error('Invalid option type: '..tostring(o.type), 2)
+                  error('Invalid option type '..tostring(o.type)..' for option '..tostring(k), 2)
                 end
 
                 if (e.name:len() > longest_opt) then
@@ -154,7 +154,7 @@ return function (arg, opts)
               end
               output(opt.desc)
               output("\n")
-              o[k] = nil 
+              o[k] = nil  
             end
 
             return 'help' 
@@ -174,10 +174,10 @@ return function (arg, opts)
                 end
               else
                 result.opt[f] = true
-              end
+              end 
             else
               return nil, 'invalid flag: '..f, i
-            end 
+            end  
           end
           goto continue
         end

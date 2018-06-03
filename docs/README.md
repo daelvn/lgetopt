@@ -16,7 +16,9 @@ getopt (arg, {})
 You can find the documentation for the function [here](lgetopt.md)
 
 ## Changelog
-### 3 Jun 2018
+### v1.2.1 - 3 Jun 2018
+Improved some error messages
+### v1.2 - 3 Jun 2018
 Added the `table` type to options! Now you can collect a list of arguments like this:
 ```lua
 local getopt = require "lgetopt"
