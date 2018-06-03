@@ -85,8 +85,8 @@ return function (arg, opts)
 
             if opts.help then
               opts.name    = opts.name or ""
-              opts.version = opts.version or ""
-              output (opts.name .. " " .. opts.version)
+              opts.version = opts.version or " "
+              output (opts.name .. " " .. opts.version .. ": ")
               output (opts.help)
               output ("\n" )
             end
@@ -160,7 +160,7 @@ return function (arg, opts)
               o[k] = nil  
             end
 
-            return 'help' 
+            return 'help'
           end -- }}}
         elseif (opts.flags) then
           local s = arg[i]:sub(2)
