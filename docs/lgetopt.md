@@ -14,6 +14,8 @@ A table of the options [described below](#).
 It describes a table with the following structure
 ```lua
 {
+  name    = "",
+  version = "",
   help    = "",
   options = {
     ["--version"] = {

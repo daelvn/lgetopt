@@ -84,11 +84,12 @@ return function (arg, opts)
             local output = opts.help_output or require('io').write
 
             if opts.help then
+              output (opts.name .. " " .. opts.version)
               output (opts.help)
               output ("\n" )
             end
 
-            output("OPTIONS:\n")
+            output("Options:\n")
 
             local longest_opt = 4
             local o = {}
@@ -96,8 +97,8 @@ return function (arg, opts)
             if (opts.flags) then
               for k,v in pairs(opts.flags) do
                 o[#o + 1] =  {
-                  name = '  - '..k,
-                  desc = v.help_text or '(no help text)',
+                  name = k:len == 1 and '  -'..k or '  --'..k,
+                  desc = v.help or '?',
                 }
 
                 if (v.type == 'counter') then

@@ -16,6 +16,8 @@ getopt (arg, {})
 You can find the documentation for the function [here](lgetopt.md)
 
 ## Changelog
+### v1.2.2 - 3 Jun 2018
+Improved the help flag
 ### v1.2.1 - 3 Jun 2018
 Improved some error messages
 ### v1.2 - 3 Jun 2018
