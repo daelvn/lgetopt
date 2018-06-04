@@ -2,8 +2,9 @@ package = "lgetopt"
 version = "dev-1"
 
 source = {
-  url = "git://github.com/daelvn/lgetopt",
-  tag = "HEAD"
+  url    = "git://github.com/daelvn/lgetopt",
+  tag    = "HEAD",
+  branch = "dev"
 }
 
 description = {

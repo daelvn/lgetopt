@@ -1,9 +1,9 @@
 package = "lgetopt"
-version = "1.2.7-1"
+version = "1.2.8-1"
 
 source = {
   url = "git://github.com/daelvn/lgetopt",
-  tag = "v1.2.7"
+  tag = "v1.2.8"
 }
 
 description = {
@@ -12,7 +12,8 @@ description = {
     lgetopt provides a function which allows you to easily parse arguments in
     the command line.
   ]],
-  homepage = "http://me.daelvn.ga/lgetopt"
+  homepage = "http://me.daelvn.ga/lgetopt",
+  license  = "MIT"
 }
 
 dependencies = {
