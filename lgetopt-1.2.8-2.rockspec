@@ -1,5 +1,5 @@
 package = "lgetopt"
-version = "1.2.8-1"
+version = "1.2.8-2"
 
 source = {
   url = "git://github.com/daelvn/lgetopt",
