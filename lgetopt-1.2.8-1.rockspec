@@ -12,7 +12,7 @@ description = {
     lgetopt provides a function which allows you to easily parse arguments in
     the command line.
   ]],
-  homepage = "http://me.daelvn.ga/lgetopt",
+  homepage = "http://lgetopt.daelvn.ga/",
   license  = "MIT"
 }
 

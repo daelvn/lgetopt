@@ -46,5 +46,5 @@ Then call this script like `lua example.lua +i file1 +i file2 +i file3` to get t
 ## License
 As the original code was unlicensed, I don't really see a reason to license it, since most of the changes are minimal.
 
-[lgetopt](http://me.daelvn.ga/lgetopt) is a command-line argument parser for Lua 5.3
+[lgetopt](http://lgetopt.daelvn.ga/) is a command-line argument parser for Lua 5.3
 Made by [bcnjr5](https://github.com/bcnjr5)
