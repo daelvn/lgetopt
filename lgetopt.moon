@@ -75,10 +75,9 @@
 
             if opts.flags
               for k, v in pairs opts.flags
-                o[#o + 1] = {
+                table.insert o, 
                   name: (k\len! == 1) and "  -#{k}" or "  --#{k}"
                   desc: v.help or "?"
-                }
 
                 if v.type == "counter"
                   o[#o].name ..= " ..."
@@ -87,9 +86,7 @@
              
             if opts.options
               for k, v in pairs opts.options do
-                e = {
-                  desc: v.help or "?"
-                }
+                e = desc: v.help or "?"
 
                 switch v.type
                   when "string"  then e.name = "  #{k} <string>"
@@ -136,7 +133,7 @@
           continue
 
     -- unknown argument if this is reached
-    if not result.unhandled then result.unhandled = {}
-    result.unhandled[#result.unhandled + 1] = arg[i]
+    result.unhandled = {} unless result.unhandled
+    table.insert result.unhandled, arg[i]
 
   result
