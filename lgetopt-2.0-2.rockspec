@@ -1,23 +1,23 @@
 package = "lgetopt"
-version = "1.2.8-2"
+version = "2.0-2"
 
 source = {
   url = "git://github.com/daelvn/lgetopt",
-  tag = "v1.2.8"
+  tag = "v2"
 }
 
 description = {
-  summary  = "Command-line argument parser for Lua 5.3",
+  summary  = "Command-line argument parser",
   detailed = [[
     lgetopt provides a function which allows you to easily parse arguments in
-    the command line.
+    the command line. Now written in MoonScript
   ]],
   homepage = "http://lgetopt.daelvn.ga/",
   license  = "MIT"
 }
 
 dependencies = {
-  "lua >= 5.3"
+  "lua >= 5.1"
 }
 
 build = {
