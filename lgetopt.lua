@@ -80,10 +80,10 @@ return function(arg, opts)
               local longest_opt, o = 4, { }
               if opts.flags then
                 for k, v in pairs(opts.flags) do
-                  o[#o + 1] = {
+                  table.insert(o, {
                     name = (k:len() == 1) and "  -" .. tostring(k) or "  --" .. tostring(k),
                     desc = v.help or "?"
-                  }
+                  })
                   if v.type == "counter" then
                     o[#o].name = o[#o].name .. " ..."
                   end
@@ -159,10 +159,10 @@ return function(arg, opts)
           end
         end
       end
-      if not result.unhandled then
+      if not (result.unhandled) then
         result.unhandled = { }
       end
-      result.unhandled[#result.unhandled + 1] = arg[i]
+      table.insert(result.unhandled, arg[i])
       _continue_0 = true
     until true
     if not _continue_0 then
