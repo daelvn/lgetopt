@@ -104,7 +104,7 @@
                 o[#o + 1] = e
 
             local fmtstr
-            if longest_opt > 20 then fmtstr = "%-20s" else fmstr = "%-#{longest_opt}s"
+            if longest_opt > 20 then fmtstr = "%-20s" else fmtstr = "%-#{longest_opt}s"
 
             for k, opt in pairs o
               output format fmtstr, opt.name

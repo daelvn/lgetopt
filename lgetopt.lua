@@ -121,7 +121,7 @@ return function(arg, opts)
               if longest_opt > 20 then
                 fmtstr = "%-20s"
               else
-                local fmstr = "%-" .. tostring(longest_opt) .. "s"
+                fmtstr = "%-" .. tostring(longest_opt) .. "s"
               end
               for k, opt in pairs(o) do
                 output(format(fmtstr, opt.name))
