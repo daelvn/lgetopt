@@ -81,7 +81,7 @@ return function(arg, opts)
               if opts.flags then
                 for k, v in pairs(opts.flags) do
                   o[#o + 1] = {
-                    name = (k:len() == 1) and "  -" .. tostring(k) or "  --" .. tostring(k),
+                    name = k,
                     desc = v.help or "?"
                   }
                   if v.type == "counter" then

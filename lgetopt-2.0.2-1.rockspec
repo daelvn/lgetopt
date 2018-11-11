@@ -1,8 +1,8 @@
 package = "lgetopt"
-version = "2.0.1-1"
+version = "2.0.2-1"
 source = {
    url = "git://github.com/daelvn/lgetopt",
-   tag = "v2.0.1"
+   tag = "v2.0.2"
 }
 description = {
    summary = "Command-line argument parser",

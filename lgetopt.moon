@@ -76,7 +76,7 @@
             if opts.flags
               for k, v in pairs opts.flags
                 o[#o + 1] = {
-                  name: (k\len! == 1) and "  -#{k}" or "  --#{k}"
+                  name: k
                   desc: v.help or "?"
                 }
 
